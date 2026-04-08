@@ -46,7 +46,7 @@ export default function NotesSidebar({
       : 'Select a Date';
 
   return (
-    <div className="bg-surface rounded-2xl shadow-lg border border-border p-6 flex flex-col h-full lg:overflow-hidden">
+    <div className="bg-[#1A1C20] rounded-lg border border-border p-6 flex flex-col h-full lg:overflow-hidden">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border text-accent shrink-0">
         <CalendarDays className="w-6 h-6" />
         <h3 className="text-xl font-bold text-white">{title}</h3>

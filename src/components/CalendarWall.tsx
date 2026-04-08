@@ -6,6 +6,7 @@ import HeroImage from './HeroImage';
 import MonthHeader from './MonthHeader';
 import CalendarGrid from './CalendarGrid';
 import NotesSidebar, { Note } from './NotesSidebar';
+import SpiralBinding from './SpiralBinding';
 
 export default function CalendarWall() {
   const [currentDate, setCurrentDate] = useState(new Date(2026, 0, 1)); // Default to Jan 2026
@@ -80,29 +81,48 @@ export default function CalendarWall() {
   if (!isClient) return <div className="min-h-screen" />; // Wait for hydration
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full items-start overflow-hidden pb-4 lg:pb-0">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full items-start overflow-y-auto lg:overflow-hidden pb-8 lg:pb-0 pt-4">
       
-      {/* Calendar Area */}
-      <div className="lg:col-span-8 flex flex-col h-full bg-surface rounded-2xl shadow-xl overflow-hidden border border-border">
-        <HeroImage monthIndex={currentDate.getMonth()} />
-        <MonthHeader 
-          currentDate={currentDate} 
-          onPrev={handlePrevMonth} 
-          onNext={handleNextMonth} 
-        />
-        <div className="flex-1 flex flex-col justify-center py-2 px-2 bg-[#1A1C20]/50">
-          <CalendarGrid 
-            currentDate={currentDate}
-            selectedStart={selectedStart}
-            selectedEnd={selectedEnd}
-            notes={notes}
-            onDateClick={handleDateClick}
-          />
+      {/* Calendar Area (The Physical Wall Calendar Frame) */}
+      <div className="lg:col-span-8 flex flex-col h-[750px] lg:h-full relative mt-4">
+        
+        {/* Wall Calendar Body */}
+        <div className="relative flex flex-col h-full bg-[#1A1C20] rounded-lg border border-border overflow-visible text-white md:mx-4">
+
+          {/* Binding Component */}
+          <SpiralBinding />
+
+          {/* Wall Hanging Hole */}
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0F1115] rounded-full border border-border z-40" />
+
+          {/* The Hero Image Graphic (Top Half of physical calendar) */}
+          <div className="h-[40%] min-h-[220px] rounded-t-lg overflow-hidden mt-3 z-10 border-b border-border">
+             <HeroImage monthIndex={currentDate.getMonth()} />
+          </div>
+
+          {/* The Date Grid (Bottom Half of physical printed calendar) */}
+          <div className="flex-1 flex flex-col z-10 bg-[#1A1C20] rounded-b-lg overflow-hidden relative">
+            <MonthHeader 
+              currentDate={currentDate} 
+              onPrev={handlePrevMonth} 
+              onNext={handleNextMonth} 
+            />
+            <div className="flex-1 flex flex-col bg-gradient-to-b from-[#1A1C20] to-[#121418]">
+              <CalendarGrid 
+                currentDate={currentDate}
+                selectedStart={selectedStart}
+                selectedEnd={selectedEnd}
+                notes={notes}
+                onDateClick={handleDateClick}
+              />
+            </div>
+          </div>
+
         </div>
       </div>
 
       {/* integrated Notes Area */}
-      <div className="lg:col-span-4 h-full flex flex-col lg:overflow-hidden">
+      <div className="lg:col-span-4 h-[500px] lg:h-full flex flex-col mt-4 lg:mt-8 px-2 md:px-0 z-10">
         <NotesSidebar 
           selectedDate={selectedStart}
           selectedEndDate={selectedEnd}

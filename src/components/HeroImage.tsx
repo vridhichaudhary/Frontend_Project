@@ -33,7 +33,7 @@ const QUOTES = [
 ];
 
 interface HeroImageProps {
-  monthIndex: number; // 0 to 11
+  monthIndex: number; 
 }
 
 export default function HeroImage({ monthIndex }: HeroImageProps) {
@@ -41,14 +41,14 @@ export default function HeroImage({ monthIndex }: HeroImageProps) {
   const quote = QUOTES[monthIndex % 12];
 
   return (
-    <div className="relative w-full h-[120px] md:h-[160px] border-b border-border flex items-center justify-center text-center shrink-0 overflow-hidden bg-black">
+    <div className="relative w-full h-full border-b border-[#2D313A] overflow-hidden bg-black rounded-t-lg">
       <AnimatePresence mode="popLayout">
         <motion.div
           key={quote}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
           className="absolute inset-0"
         >
           <img
@@ -56,14 +56,12 @@ export default function HeroImage({ monthIndex }: HeroImageProps) {
             alt="Motivational Coding"
             className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F1115]/80 via-[#0F1115]/30 to-transparent" />
+          <div className="absolute inset-0 bg-black/50" />
           
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <p className="text-lg md:text-2xl font-bold text-white drop-shadow-lg tracking-wide z-10 w-full px-4">
-              <span className="text-accent text-3xl align-top select-none mr-2">"</span>
-              {quote}
-              <span className="text-accent text-3xl align-top select-none ml-2">"</span>
-            </p>
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+             <p className="text-xl md:text-2xl font-bold text-white text-center leading-snug">
+               “{quote}”
+             </p>
           </div>
         </motion.div>
       </AnimatePresence>
