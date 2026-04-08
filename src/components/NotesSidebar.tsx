@@ -27,8 +27,6 @@ export default function NotesSidebar({
 }: NotesSidebarProps) {
   const [inputValue, setInputValue] = useState('');
 
-  // Use the start date for saving notes if it's a range.
-  // We attach notes primarily to the selected start date for simplicity.
   const activeDate = selectedDate || new Date(); 
   const dateKey = format(activeDate, 'yyyy-MM-dd');
   const activeNotes = notes[dateKey] || [];
