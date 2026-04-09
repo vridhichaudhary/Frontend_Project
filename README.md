@@ -2,6 +2,8 @@
 
 A beautifully designed, interactive wall calendar component built with Next.js, React, and Tailwind CSS. The design is inspired by high-end physical wall calendars, featuring a rich, dark aesthetic, seamless micro-animations, and integrated daily task management.
 
+**🌍 Live Demo:** [https://frontend-project-vert-three.vercel.app/](https://frontend-project-vert-three.vercel.app/)
+
 ## ✨ Features
 
 - **Interactive Physical Wall Calendar Aesthetic**: Smooth spiral bindings, rich dark mode colors, and hanging hole details.
@@ -77,3 +79,10 @@ A purely aesthetic component.
 - **Utility**: `date-fns` (Date calculations), `clsx` & `tailwind-merge` (Dynamic CSS classes)
 - **Animation**: `framer-motion`
 - **Icons**: `lucide-react`
+
+## 🚀 Deployment
+
+The project is live and can be accessed at:
+[https://frontend-project-vert-three.vercel.app/](https://frontend-project-vert-three.vercel.app/)
+
+Deployed using **Vercel** with automatic deployments from the GitHub repository.
